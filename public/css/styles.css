@@ -3,4 +3,187 @@
 *:before,
 *:after {
   box-sizing: border-box;
+  margin: 0;
+}
+body{background-color:white;}
+
+.siteName a,h1 ,h2, h3 {font-family: 'Orbitron', sans-serif;}
+
+p,ul,li,a{font-family: 'Roboto', sans-serif;}
+
+/* Main tag general styling*/
+section{margin: 2rem 0 2rem 0;}
+
+/* Header styling */
+header{
+  display: flex; 
+  flex-direction: row; 
+  justify-content:space-between; 
+  margin-bottom:2rem;
+}
+
+.siteName a{ 
+  font-size: 2rem; 
+  text-decoration:none; 
+  font-weight:bold;
+  color:#001514;
+}
+
+div#tools a{color:#001514; text-decoration:none; font-size: 1.1rem;}
+
+/* navigation bar styling*/
+nav{
+  background-color:#001514; 
+  padding: 1rem;
+  /* margin-bottom: 2rem; */
+}
+
+nav ul{ 
+  display:flex; 
+  flex-direction:row;  
+  justify-content:space-evenly;
+  color :white;
+  list-style-type: none;
+  padding: 0;
+  gap: 1rem;
+}
+
+nav ul li{
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+/* Introduction section*/
+
+section.introduction{position:relative;}
+
+section.introduction img.intro-car{
+  display: block; 
+  margin: auto; 
+  width: 90%;
+  min-width: 12rem;
+  /* max-width: 20rem; */
+  text-align: center;
+  /* position: relative; */
+}
+
+div.group img{
+  display: block; 
+  margin: auto;
+  width: 70%;
+  min-width: 5rem;
+  text-align: center; 
+}
+
+div.group{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  background-color: rgba(86, 142, 163, 0.8);
+  color: white;
+  width: 10rem;
+  gap:.25rem;
+  top:4.2rem;
+  position: absolute;
+}
+
+div.group h2{font-size:1rem;}
+
+div.group ul{
+  display: grid;
+  list-style: none;
+  padding: 0;
+  gap:.5rem;
+}
+
+div.group img {padding: 0; margin: 0;}
+
+/* Reviews section*/
+section.reviews ul{
+  margin-top:1.5rem;
+  display:flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding-left: 10px;
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+/*Delorean upgrades styling*/
+.square-grid{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  text-align: center;
+  margin-top:1.5rem;
+  /* width: 70%;
+  margin: auto; */
+}
+
+.square-grid img{
+  /* display: block;
+  margin: auto;
+  background-color: aqua;
+  padding:25px 40px 25px 40px;
+  width: 90%;
+  height: 25vw;
+  min-width: 100px; */
+  
+  display: block;
+  margin: auto;
+  justify-content: center;
+  /* max-width:90%; */
+  /* max-height: 150px;
+  max-width: 150px; */
+  /* max-width:90%;
+  max-width: 20rem;
+  min-width: 90px;
+  height:20rem;
+  max-height: 145px; */
+  width: 80%;
+  height: 30vw;
+  max-width:160px;
+  max-height:120px;
+  background-color: #568EA3;
+  padding:25px 40px 25px 40px;
+}
+
+
+/* Larger view  styling*/
+@media screen and (min-width: 650px) {
+  html{
+    background-image: url("../images/site/small_check.jpg"); 
+  }
+
+  body{
+    display: block;
+    border: #5e9cb3 solid  8px; 
+    border-radius: 15px;
+    margin: auto;
+    max-width:45rem;
+    padding: 20px;
+  }
+
+  div.group{
+    top:8rem;
+    gap: 20px;
+    left:2.5rem;
+    font-size: 1.3rem;
+  }
+
+  div.group h2{font-size:1.2rem;}
+
+  .sort-section{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    gap: 2rem;
+  }
+
+  .square-grid img{
+    width: 100%;
+    height: 120px;
+  }
 }
