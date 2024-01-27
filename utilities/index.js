@@ -57,6 +57,29 @@ Util.buildClassificationGrid = async function(data){
   return grid
 }
 
+Util.buildCarDetails = async function(data){
+  let infoSection
+  if(data.length > 0){
+    infoSection = '<section id="inv-details">'
+    data.forEach(vehicle => { 
+      // infoSection += `<h1>${vehicle.inv_year} ${vehicle.inv_make}  ${vehicle.inv_model}</h1>`
+      
+      infoSection +=  '<img src="' + vehicle.inv_image 
+      +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
+      +' on CSE Motors" />'
+
+      infoSection+= `<p>${vehicle.inv_description}</p>`
+      infoSection+= '<p> Price $' + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</p>'
+      infoSection+= `<p>Color: ${vehicle.inv_color}</p>`
+      infoSection+= `<p>Mileage: ${vehicle.inv_miles}</p>`
+    })
+      infoSection += '</section>'
+  } else { 
+    infoSection += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+  }
+  return infoSection
+}
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
