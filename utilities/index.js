@@ -35,7 +35,7 @@ Util.buildClassificationGrid = async function(data){
       grid += '<li>'
       grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
       + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
-      + 'details"><img src="' + vehicle.inv_thumbnail 
+      + ' details"><img src="' + vehicle.inv_thumbnail 
       +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
       +' on CSE Motors" /></a>'
       grid += '<div class="namePrice">'
@@ -58,26 +58,28 @@ Util.buildClassificationGrid = async function(data){
 }
 
 Util.buildCarDetails = async function(data){
-  let infoSection
+  let info
   if(data.length > 0){
-    infoSection = '<section id="inv-details">'
+    info = '<div id="inv-details">'
     data.forEach(vehicle => { 
-      // infoSection += `<h1>${vehicle.inv_year} ${vehicle.inv_make}  ${vehicle.inv_model}</h1>`
+      // info += `<h1>${vehicle.inv_year} ${vehicle.inv_make}  ${vehicle.inv_model}</h1>`
       
-      infoSection +=  '<img src="' + vehicle.inv_image 
+      info +=  '<img src="' + vehicle.inv_image 
       +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
-      +' on CSE Motors" />'
-
-      infoSection+= `<p>${vehicle.inv_description}</p>`
-      infoSection+= '<p> Price $' + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</p>'
-      infoSection+= `<p>Color: ${vehicle.inv_color}</p>`
-      infoSection+= `<p>Mileage: ${vehicle.inv_miles}</p>`
+      +' on CSE Motors" title="'+vehicle.inv_make + ' '+ vehicle.inv_model+'"/>'
+      info+='<h2>Details:</h2>'
+      info+= `<p><span class="subtitles">Description:</span> ${vehicle.inv_description}</p>`
+      info+= '<p><span class="subtitles">Price:</span> $' + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</p>'
+      info+= `<p><span class="subtitles">Make:</span> ${vehicle.inv_model}</p>`
+      info+= `<p><span class="subtitles">Model:</span> ${vehicle.inv_make}</p>`
+      info+= `<p><span class="subtitles">Color:</span> ${vehicle.inv_color}</p>`
+      info+= `<p><span class="subtitles">Mileage:</span> ${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)}</p>`
     })
-      infoSection += '</section>'
+      info += '</div>'
   } else { 
-    infoSection += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+    info += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
   }
-  return infoSection
+  return info
 }
 
 /* ****************************************

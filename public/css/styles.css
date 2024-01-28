@@ -154,7 +154,7 @@ section.reviews ul{
 
 /* Classification Pages Stylying */
 
-.classficationSection h1{text-align:center;}
+.classification h1{text-align:center;}
 
 ul#inv-display{ 
   display:grid; 
@@ -196,17 +196,28 @@ div.namePrice{margin: 1rem 0 0rem 0;}
 
 hr{display: none;}
 
-/* Car details Styling*/
+/* Car details section Styling*/
+.car-details h1, h2{text-align:center;}
 
- section #inv-details img{margin: 1rem;}
+/* .car-details h2{margin-top:1rem;} */
 
- section #inv-details img{
+ div#inv-details {display:grid; padding:1rem; gap:1rem;}
+
+ div#inv-details p{padding-left: 2rem; padding-right: 1rem; font-size: 1.2rem;}
+
+ div#inv-details img{
   display: block;
   margin: auto;
   max-width: 90%;
   border-radius: 10px;
  }
 
+ span.subtitles{ font-weight: bold; overflow-wrap: break-word;}
+
+ span.subtitles:after{
+  content: "\a";
+  white-space: pre;
+}
 
 
 /* Larger view  styling*/
@@ -249,6 +260,9 @@ hr{display: none;}
   ul#inv-display{ 
     grid-template-columns: 1fr 1fr;
   }
+
+  /* Car details section Styling*/
+  
 
 
 }
