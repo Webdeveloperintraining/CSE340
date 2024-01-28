@@ -12,14 +12,14 @@ body{background-color:white;}
 p,ul,li,a{font-family: 'Roboto', sans-serif;}
 
 /* Main tag general styling*/
-section{margin: 2rem 0 2rem 0;}
+section{margin: 1rem 0 1rem 0;}
 
 /* Header styling */
 header{
   display: flex; 
   flex-direction: row; 
   justify-content:space-between; 
-  margin-bottom:2rem;
+  margin-bottom:.5rem;
 }
 
 .siteName a{ 
@@ -50,7 +50,7 @@ nav ul{
 
 nav ul li a{
   font-weight: 500;
-  font-size: 1rem;
+  font-size: .9rem;
   color :white;
   text-decoration: none;
 }
@@ -152,6 +152,62 @@ section.reviews ul{
   padding:25px 40px 25px 40px;
 }
 
+/* Classification Pages Stylying */
+
+.classficationSection h1{text-align:center;}
+
+ul#inv-display{ 
+  display:grid; 
+  /* align-items: center; */
+  /* align-content: center;*/
+  justify-content: center; 
+  padding:none;
+  gap: 1rem;
+  margin: 1rem 0 1rem 0;
+  list-style-type: none;
+  padding: 0;
+  color:#001514;
+
+}
+
+ul#inv-display li { 
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border:1px solid #5e9cb3;
+  background-color: #568ea3;
+  padding: 1rem;
+  text-align: center;
+}
+
+ul#inv-display li a{
+  text-decoration: none; 
+  color:#001514;
+  cursor: pointer; 
+  list-style-type: none;
+}
+
+ul#inv-display a:hover{text-decoration:underline;}
+
+ul#inv-display img{display: block;margin: auto; border-radius: 10px;}
+
+div.namePrice{margin: 1rem 0 0rem 0;}
+
+hr{display: none;}
+
+/* Car details Styling*/
+
+ section #inv-details img{margin: 1rem;}
+
+ section #inv-details img{
+  display: block;
+  margin: auto;
+  max-width: 90%;
+  border-radius: 10px;
+ }
+
+
 
 /* Larger view  styling*/
 @media screen and (min-width: 650px) {
@@ -188,4 +244,12 @@ section.reviews ul{
     width: 100%;
     height: 120px;
   }
+
+  /* Classification Pages Stylying */
+  ul#inv-display{ 
+    grid-template-columns: 1fr 1fr;
+  }
+
+
 }
+
