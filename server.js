@@ -28,10 +28,13 @@ app.set("layout", "./layouts/layout") // not at views roots
 
 
 // Inventory routes
-app.use("/inv", inventoryRoute)
+app.use("/inv", utilities.handleErrors(inventoryRoute))
 
 // Index route
 app.get("/", utilities.handleErrors(baseController.buildHome))
+
+//Error Route
+app.get("/error", utilities.handleErrors(baseController.buildHome2))
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
