@@ -1,0 +1,16 @@
+<section class="forms">
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% messages() %>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<form class="register" action="/account/register" method="post">
+  <label for="account_firstname">First Name :</label> <input id="account_firstname" name="account_firstname" type="text" placeholder="John" required>
+  <label for="account_lastname">Last Name :</label><input id="account_lastname" name="account_lastname" type="text" placeholder="Johnson" required>
+  <label for="account_email">Email Address :</label><input id="account_email" name="account_email" type="email" placeholder="john_johnson@email.com" required>
+  <label for="account_password">Password :</label><input id="account_password" name="account_password" type="password" required>
+  <button class="register-btn" type="submit">Register</button>
+</form>
+</section>

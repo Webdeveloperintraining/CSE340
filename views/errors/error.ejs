@@ -1,5 +1,9 @@
 <section>
-<h1> <%- title  %> </h1>
+<h1><% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
 
 <img src="../images/site/crash.jpg" alt="car crash" width="100%">
 
