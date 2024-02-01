@@ -1,11 +1,10 @@
 <section class="forms">
 <% if (title) { %>
     <h1><%= title %></h1>
-    <% messages() %>
     <% } else {
       res.redirect('/')
     } %>
-<!-- <form class="login" action="/account/login" method="post"> -->
+<%- messages() %>
   <form class="login">
     <label for="account_email" >Email :</label>
     <input id="account_email" type="email" name="account_email" placeholder="example@gmail.com" required>
