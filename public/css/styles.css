@@ -259,6 +259,21 @@ form.login input {
   font-family: 'Roboto', sans-serif;
 }
 
+/* input:required:focus:invalid {
+  border:solid 2px red;
+}
+
+input:required:valid {
+  border:solid 2px  green;
+ }  */
+
+form.login .pass_requirements,.pass_requirements{
+  font-weight: 100;
+  text-align: left;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+}
+
 .login-btn{
   text-align: center;
   margin: auto;
