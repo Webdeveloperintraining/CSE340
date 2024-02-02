@@ -41,6 +41,7 @@ invCont.buildManagement = async function(req, res){
     nav,
     errors: null,
   })
+  //req.flash("notice",`Congratulations, you\'re registered`);
 }
 
 invCont.newClassification = async function(req, res){

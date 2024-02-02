@@ -34,11 +34,15 @@ div#tools a{color:#001514; text-decoration:none; font-size: 1.1rem; font-family:
 div#tools a:hover{text-decoration: underline;}
 
 /* navigation bar styling*/
-nav{
+nav,footer{
   background-color:#001514; 
   padding: 1rem;
+  color:white;
   /* margin-bottom: 2rem; */
 }
+
+footer a{ text-decoration: none;   color:white;}
+footer a:hover{text-decoration:underline;}
 
 nav ul{ 
   display:flex; 
@@ -47,7 +51,7 @@ nav ul{
   /* color :white; */
   list-style-type: none;
   padding: 0;
-  gap: 1rem;
+  /* gap: 1rem; */
 }
 
 nav ul li a{
@@ -55,9 +59,10 @@ nav ul li a{
   font-size: .9rem;
   color :white;
   text-decoration: none;
+  padding:1rem;
 }
 
-nav ul li a:hover{ text-decoration: underline;}
+nav ul li a:hover{ /*text-decoration: underline;*/ background-color: #568ea3;}
 
 /* Introduction section*/
 
@@ -183,6 +188,7 @@ ul#inv-display li {
   background-color: #568ea3;
   padding: 1rem;
   text-align: center;
+  min-width:20rem;
 }
 
 ul#inv-display li a{
@@ -341,6 +347,32 @@ form.register input {
 .register-btn:hover{background-color:#001514; color: white;}
 
 
+/* Management View Styling*/
+div.management-btns{
+  display:flex;
+  flex-direction:column;
+  text-align: center;
+  justify-content:space-evenly;
+  gap:4rem;
+  margin:2rem 0 3rem 0;
+  padding:3rem;
+  background-color: #568EA3;
+}
+
+div.management-btns p a{
+  background-color: #001514;
+  padding:1rem;
+  text-decoration:none;
+  color:white;
+  border-radius: 8px;
+}
+
+div.management-btns p a:hover{background-color:gray; font-weight:500;}
+
+/* Add Classififcation View Styling*/
+
+/* Add Inventory View Styling*/
+
 /* Larger view  styling*/
 @media screen and (min-width: 650px) {
   html{
@@ -385,6 +417,13 @@ form.register input {
   form.login, form.register{  
     padding-left: 2rem;
     padding-right: 2rem;
+  }
+
+  /* Management View Styling*/
+  div.management-btns{ 
+    flex-direction: row;
+    padding:5rem;
+    gap:2rem;
   }
 
 }

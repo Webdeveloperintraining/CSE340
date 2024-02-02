@@ -1,4 +1,4 @@
-<section>
+<section class="forms">
     <% if (title) { %>
         <h1><%= title %></h1>
         <% } else {
@@ -14,9 +14,18 @@
     </ul>
     <% } %>
 
-    <form action="/inv/add-inventory" method="post">
+    <form action="/inv/add-inventory" method="post" >
         <span></span>
         <label for="inv_name">Name: </label><input type="text" name="classification_name" id="inv_name">
+        <label for="inv_make">Make</label><input name="inv_make" id="invMake" type="text">
+        <label for="inv_model">Model</label><input name="inv_model" id="invModel" type="text">
+        <label for="inv_image">Model</label><input name="inv_image" id="invImage" type="text">
+        <label for="inv_thumbnail">Model</label><input name="inv_thumbnail" id="invThumbnail" type="text">
+        <label for="inv_description">Description</label><textarea name="inv_description" id="inv_description" cols="30" rows="10"></textarea>
+        <label for="inv_year">Year</label><input name="inv_year" id="invYear" type="text">
+        <label for="inv_make">Miles</label><input name="inv_miles" id="invMiles" type="text">
+        <label for="inv_price">Price</label><input name="inv_price" id="invPrice" type="text">
+        <label for="inv_make">Color</label><input name="inv_color" id="invColor" type="text">
         <button type="submit">Add Classification</button>
     </form>
 
