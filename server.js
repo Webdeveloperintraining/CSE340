@@ -78,6 +78,8 @@ app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-
 // Inventory routes
 app.use("/inv", utilities.handleErrors(inventoryRoute))
 
+app.get("/inv", utilities.handleErrors(inventoryRoute))
+
 // My account route
 app.use("/account",utilities.handleErrors(accountRoute))
 

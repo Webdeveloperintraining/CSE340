@@ -9,6 +9,15 @@ router.get("/type/:classificationId", utilities.handleErrors(invController.build
 
 router.get("/detail/:inv_id",utilities.handleErrors(invController.buildByDetails));
 
-router.get("detail",utilities.handleErrors(invController.buildByDetails));
+/* Management Area */
+router.get("/inv",utilities.handleErrors(invController.buildManagement));
 
+router.get("/add-inventory",utilities.handleErrors(invController.newInventory));
+//router.post("/inv/add-inventory",utilities.handleErrors(invController.newInventory));
+
+router.get("/add-classification",utilities.handleErrors(invController.newClassification));
+//router.post("/inv/add-classification",utilities.handleErrors(invController.newClassification));
+
+
+//router.get("/detail",utilities.handleErrors(invController.buildByDetails));
 module.exports = router;
