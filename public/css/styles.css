@@ -36,7 +36,7 @@ div#tools a:hover{text-decoration: underline;}
 /* navigation bar styling*/
 nav,footer{
   background-color:#001514; 
-  padding: 1rem;
+  padding: 1rem 0 1rem 0;
   color:white;
   /* margin-bottom: 2rem; */
 }
@@ -56,10 +56,9 @@ nav ul{
 
 nav ul li a{
   font-weight: 500;
-  font-size: .9rem;
   color :white;
   text-decoration: none;
-  padding:1rem;
+  padding: 1rem 5px 1rem 5px;
 }
 
 nav ul li a:hover{ /*text-decoration: underline;*/ background-color: #568ea3;}
@@ -393,6 +392,7 @@ div.management-btns p a:hover,.class-btn:hover{background-color:gray; font-weigh
   border: #001514 1px solid;
   border-radius: 10px;
   font-family: 'Roboto', sans-serif;
+  resize: none;
 }
 
 .management-btns{
