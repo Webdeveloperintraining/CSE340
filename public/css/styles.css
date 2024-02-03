@@ -348,7 +348,7 @@ textarea:required:focus:valid,input:required:focus:valid {
  } 
 
 /* Management View Styling*/
-div.management-btns{
+.management{
   display:flex;
   flex-direction:column;
   text-align: center;
@@ -361,15 +361,25 @@ div.management-btns{
   border-radius: 8px;
 }
 
-div.management-btns p a{
+/* div.management p a{
   background-color: #001514;
-  padding:1rem;
   text-decoration:none;
   color:white;
+  padding:2rem;
+  border: 0;
+  border-radius: 8px;
+} */
+
+div.management p a , button.management-btns{
+  background-color: #001514;
+  text-decoration:none;
+  color:white;
+  padding:1.2rem;
+  border: 0;
   border-radius: 8px;
 }
 
-div.management-btns p a:hover,.class-btn:hover{background-color:gray; font-weight:500;}
+div.management p a:hover,button.management-btns:hover{background-color:gray; font-weight:500;}
 
 /* Add Classififcation View Styling*/
 
@@ -460,7 +470,7 @@ div.management-btns p a:hover,.class-btn:hover{background-color:gray; font-weigh
   }
 
   /* Management View Styling*/
-  div.management-btns{ 
+  .management{ 
     flex-direction: row;
     padding:5rem;
     gap:2rem;
