@@ -16,8 +16,8 @@
 
     <form class="management-forms" action="/inv/add-inventory" method="post" >
       <span class="form-notes"><strong>Note:</strong> All fields are required</span> 
-        <label for="classification_name">Classification Name : </label>
-        <select name="classification_name" id="classification_name" required >
+        <label for="classification_id">Classification Name : </label>
+        <select name="classification_id" id="classification_id" required >
           <%-options%>
         </select>
         <label for="inv_make">Make :</label><input name="inv_make" id="inv_make" type="text" placeholder="Min of 3 characters" pattern="^[a-zA-Z0-9\- ]+$" required minlength="3" value="<%= locals.inv_make %>">
