@@ -16,8 +16,8 @@
 
     <form class="management-forms" action="/inv/add-classification" method="post">
         <label for="classification_name">Classification Name: </label>
-        <span class="form-notes"><strong>Note:</strong> Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span> 
-        <input type="text" name="classification_name" id="classification_name" required pattern="^[a-zA-Z]+$">
+        <span class="form-notes"><strong>Note:</strong> Name must be alphabetical characters only (No spaces or special characters)</span> 
+        <input type="text" name="classification_name" id="classification_name" placeholder="Example: Luxury" required pattern="^[a-zA-Z]+$" value="<%= locals.classification_name %>">
         <button class="management-btns" type="submit">Add Vehicle</button>
      </form>
 
