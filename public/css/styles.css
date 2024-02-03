@@ -264,14 +264,6 @@ form.login input {
   font-family: 'Roboto', sans-serif;
 }
 
-/* input:required:focus:invalid {
-  border:solid 2px red;
-}
-
-input:required:valid {
-  border:solid 2px  green;
- }  */
-
 form.login .form-notes,.form-notes{
   font-weight: 100;
   text-align: left;
@@ -343,8 +335,17 @@ form.register input {
   cursor: pointer;
 }
 
+input:focus,textarea:focus{font-weight: bolder; }
+
 .register-btn:hover{background-color:#001514; color: white;}
 
+textarea:required:focus:invalid,input:required:focus:invalid {
+  background-color: #ceacaf;
+}
+
+textarea:required:focus:valid,input:required:focus:valid {
+  background-color: #8ac890;
+ } 
 
 /* Management View Styling*/
 div.management-btns{
