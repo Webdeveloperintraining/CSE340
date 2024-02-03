@@ -5,7 +5,7 @@ const invModel = require("../models/inventory-model")
 
 validate.classificationRules = () => {
   return [
-    // firstname is required and must be string
+    // classification_name is required and must be string
     body("classification_name")
       .trim()
       .isLength({ min: 3 })
@@ -77,12 +77,12 @@ validate.classificationRules = () => {
     body("inv_miles")
     .trim()
     .isLength({ min: 1 }).withMessage("Please add  the amount of miles") // on error this message is sent.
-    .isInt({min: 0}).withMessage("Amount of miles isn't a valid number"),
+    .isNumeric().withMessage("Amount of miles is not a valid number"),
     
     body("inv_price")
     .trim()
     .isLength({ min: 1 }).withMessage("Please add a price.") // on error this message is sent.
-    .isInt({min: 0}).withMessage("Price isn't a number"),
+    .isNumeric().withMessage("Price is not a number"),
 
     body("inv_color")
     .trim()
