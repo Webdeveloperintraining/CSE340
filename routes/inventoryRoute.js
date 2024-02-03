@@ -1,7 +1,7 @@
 // Needed Resources 
 const express = require("express")
 const router = new express.Router() 
-const classValidate = require('../utilities/inventory-validation')
+const invValidate = require('../utilities/inventory-validation')
 const invController = require("../controllers/invController")
 const utilities = require("../utilities/");
 
@@ -14,13 +14,15 @@ router.get("/detail/:inv_id",utilities.handleErrors(invController.buildByDetails
 router.get("/inv",utilities.handleErrors(invController.buildManagement));
 
 router.get("/add-inventory",utilities.handleErrors(invController.buildInventory));
-//router.post("/inv/add-inventory",utilities.handleErrors(invController.newInventory));
+router.post('/add-inventory',
+invValidate.vehicleRules(),
+invValidate.checkVehicleData,
+utilities.handleErrors(invController.addNewVehicle))
 
 router.get("/add-classification",utilities.handleErrors(invController.buildClassification));
-//router.post("/inv/add-classification",utilities.handleErrors(invController.newClassification));
 router.post('/add-classification',
-classValidate.ClassificationRules(),
-classValidate.checkClassificationData,
+invValidate.classificationRules(),
+invValidate.checkClassificationData,
 utilities.handleErrors(invController.addNewClassification))
 
 //router.get("/detail",utilities.handleErrors(invController.buildByDetails));

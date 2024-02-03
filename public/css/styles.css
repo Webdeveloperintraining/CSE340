@@ -40,8 +40,8 @@ nav,footer{
   color:white;
   /* margin-bottom: 2rem; */
 }
-
-footer a{ text-decoration: none;   color:white;}
+footer{padding: 1rem; }
+footer a{ text-decoration: none; color:white;}
 footer a:hover{text-decoration:underline;}
 
 nav ul{ 
