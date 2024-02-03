@@ -81,6 +81,18 @@ Util.buildCarDetails = async function(data){
   return info
 }
 
+Util.getOptions = async function(req, res, next){
+  let data = await invModel.getClassifications()
+  let option = '<option value="" disabled selected>Select a Vehicle Classification</option>';
+  data.rows.forEach((row) => {
+    option +=`<option value="${row.classification_id}">`,
+    option+= `${row.classification_name}`,
+    option += '</option>'
+    })
+    return option
+  }
+
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
