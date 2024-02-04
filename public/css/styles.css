@@ -55,6 +55,7 @@ nav ul{
 }
 
 nav ul li a{
+  font-size:.8rem ;
   font-weight: 500;
   color :white;
   text-decoration: none;
@@ -437,6 +438,8 @@ div.management p a:hover,button.management-btns:hover{background-color:gray; fon
     max-width:45rem;
     padding: 20px;
   }
+
+  nav ul li a{font-size:1rem ;}
 
   div.group{
     top:8rem;
