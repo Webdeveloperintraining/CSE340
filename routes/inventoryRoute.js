@@ -13,19 +13,25 @@ router.get("/detail/:inv_id",utilities.handleErrors(invController.buildByDetails
 /* Management Area */
 router.get("/inv",utilities.handleErrors(invController.buildInventoryManagement));
 
-router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
-
 router.get("/add-inventory",utilities.handleErrors(invController.buildInventory));
+
 router.post('/add-inventory',
 invValidate.vehicleRules(),
 invValidate.checkVehicleData,
 utilities.handleErrors(invController.addNewVehicle))
 
 router.get("/add-classification",utilities.handleErrors(invController.buildClassification));
+
 router.post('/add-classification',
 invValidate.classificationRules(),
 invValidate.checkClassificationData,
 utilities.handleErrors(invController.addNewClassification))
+
+
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
+/* Route to Edit Vehicles */
+router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventory));
 
 //router.get("/detail",utilities.handleErrors(invController.buildByDetails));
 module.exports = router;
