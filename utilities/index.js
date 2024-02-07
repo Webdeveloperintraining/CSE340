@@ -85,14 +85,25 @@ Util.buildCarDetails = async function(data){
 
 Util.getOptions = async function(req, res, next){
   let data = await invModel.getClassifications()
-  let option = '<option value="" disabled selected>Select a Vehicle Classification</option>';
+  let option = '<select name="classification_id" id="classification_id" required>';
+  option += '<option value="" disabled selected>Select a Vehicle Classification</option>';
   data.rows.forEach((row) => {
-    option +=`<option value="${row.classification_id}">`,
-    option+= `${row.classification_name}`,
-    option += '</option>'
-    })
+    option += `<option value="${row.classification_id}">${row.classification_name}</option>`;
+  });
+    option += '</select>';
     return option
   }
+
+  Util.buildClassificationList = async function(req, res, next){
+    let data = await invModel.getClassifications()
+    let option = '<select name="classification_id" id="classificationList" required>';
+    option += '<option value="" disabled selected>Select a Vehicle Classification</option>';
+    data.rows.forEach((row) => {
+      option += `<option value="${row.classification_id}">${row.classification_name}</option>`;
+    });
+      option += '</select>';
+      return option
+    }
 
   /* ****************************************
 * Middleware to check token validity

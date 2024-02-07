@@ -17,9 +17,7 @@
     <form class="management-forms" action="/inv/add-inventory" method="post" >
       <span class="form-notes"><strong>Note:</strong> All fields are required</span> 
         <label for="classification_id">Classification Name : </label>
-        <select name="classification_id" id="classification_id" required >
-          <%-options%>
-        </select>
+          <%- options %>
         <label for="inv_make">Make :</label><input name="inv_make" id="inv_make" type="text" placeholder="Min of 3 characters" pattern="^[a-zA-Z0-9\- ]+$" required minlength="3" value="<%= locals.inv_make %>">
         <label for="inv_model">Model :</label><input name="inv_model" id="inv_model" type="text" placeholder="Min of 3 characters" pattern="^[a-zA-Z0-9\- ]+$" required minlength="3" value="<%= locals.inv_model %>">
         <label for="inv_image">Image Path :</label><input name="inv_image" placeholder="Example: /images/vehicles/no-image.png" id="inv_image" type="text" required pattern="^(\/[a-zA-Z0-9_\-]+)+(\/[a-zA-Z0-9_\-]+\.\w+)?\/?$" value="<%= locals.inv_image %>">

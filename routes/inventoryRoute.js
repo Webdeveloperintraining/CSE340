@@ -11,7 +11,9 @@ router.get("/type/:classificationId", utilities.handleErrors(invController.build
 router.get("/detail/:inv_id",utilities.handleErrors(invController.buildByDetails));
 
 /* Management Area */
-router.get("/inv",utilities.handleErrors(invController.buildManagement));
+router.get("/inv",utilities.handleErrors(invController.buildInventoryManagement));
+
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
 router.get("/add-inventory",utilities.handleErrors(invController.buildInventory));
 router.post('/add-inventory',
