@@ -14,7 +14,7 @@
     </ul>
     <% } %>
 
-    <form class="management-forms" action="/inv/update" method="post" >
+    <form class="management-forms" id="updateForm" action="/inv/update" method="post" >
       <span class="form-notes"><strong>Note:</strong> All fields are required</span> 
         <label for="classification_id">Classification Name : </label>
           <%- classificationSelect %>
@@ -27,7 +27,11 @@
         <label for="inv_miles">Miles :</label><input name="inv_miles" id="inv_miles" placeholder="Digits only" pattern="^-?\d+(\.\d+)?$" type="text" required value="<%= locals.inv_miles%>">
         <label for="inv_price">Price :</label><input name="inv_price" id="inv_price" type="text" required placeholder="Decimal or integer" pattern="^-?\d+(\.\d+)?$" value="<%= locals.inv_price %>">
         <label for="inv_color">Color :</label><input name="inv_color" id="inv_color" type="text" required placeholder="Example: Yellow" pattern="^[a-zA-Z](?:[ '.\-a-zA-Z]*[a-zA-Z])?$"  value="<%= locals.inv_color%>">
-        <button class="management-btns" type="submit">Update Vehicle</button>
+        <input type="hidden" name="inv_id"
+        <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+        <% } %>>
+        <button class="management-btns" disabled type="submit">Update Vehicle</button>
     </form>
 
 </section>
+<script src="../../js/inv-update.js"></script>

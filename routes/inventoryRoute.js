@@ -33,5 +33,10 @@ router.get("/getInventory/:classification_id", utilities.handleErrors(invControl
 /* Route to Edit Vehicles */
 router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventory));
 
+router.post("/update/", 
+invValidate.vehicleRules(),
+invValidate.checkUpdateData,
+utilities.handleErrors(invController.updateInventory))
+
 //router.get("/detail",utilities.handleErrors(invController.buildByDetails));
 module.exports = router;

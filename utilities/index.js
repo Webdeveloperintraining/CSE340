@@ -83,23 +83,26 @@ Util.buildCarDetails = async function(data){
   return info
 }
 
-Util.getOptions = async function(req, res, next){
-  let data = await invModel.getClassifications()
+Util.getOptions = async function(classification_id){
+  let data = await invModel.getClassifications();
   let option = '<select name="classification_id" id="classification_id" required>';
-  option += '<option value="" disabled selected>Select a Vehicle Classification</option>';
+  option += '<option value="">Select a Vehicle Classification</option>';
   data.rows.forEach((row) => {
-    option += `<option value="${row.classification_id}">${row.classification_name}</option>`;
+    const isSelected = Number(row.classification_id) === Number(classification_id) ? 'selected' : '';
+    option += `<option value="${row.classification_id}" ${isSelected}>${row.classification_name}</option>`;
   });
-    option += '</select>';
-    return option
-  }
 
-  Util.buildClassificationList = async function(req, res, next){
+  option += '</select>';
+  return option;
+};
+
+  Util.buildClassificationList = async function(classification_id){
     let data = await invModel.getClassifications()
     let option = '<select name="classification_id" id="classificationList" required>';
-    option += '<option value="" disabled selected>Select a Vehicle Classification</option>';
+    option += '<option value="">Select a Vehicle Classification</option>';
     data.rows.forEach((row) => {
-      option += `<option value="${row.classification_id}">${row.classification_name}</option>`;
+      const isSelected = Number(row.classification_id) === Number(classification_id) ? 'selected' : '';
+    option += `<option value="${row.classification_id}" ${isSelected}>${row.classification_name}</option>`;
     });
       option += '</select>';
       return option

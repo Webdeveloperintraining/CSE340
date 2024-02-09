@@ -97,7 +97,7 @@ validate.checkVehicleData = async (req, res, next) => {
   errors = validationResult(req)
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav()
-    let options = await utilities.getOptions()
+    let options = await utilities.getOptions(classification_id)
     res.render("inventory/add-inventory", {
       errors,
       title: "Add New Vehicle",
@@ -115,6 +115,36 @@ validate.checkVehicleData = async (req, res, next) => {
       classification_id
     })
     return
+  }
+  next()
+}
+
+validate.checkUpdateData = async (req, res, next) => {
+  const {inv_id, inv_make, inv_model, inv_year, inv_description, inv_image,inv_thumbnail,inv_price,inv_miles,inv_color,classification_id } = req.body
+  let errors = []
+  errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    let options = await utilities.buildClassificationList(classification_id)
+    const itemData = await invModel.getCarDetails(inv_id)
+    const itemName = `${itemData[0].inv_make} ${itemData[0].inv_model}`
+    res.render("inventory/edit-inventory", {
+      errors,
+      title: "Edit " + itemName,
+      nav,
+      options,
+      inv_make, 
+      inv_model, 
+      inv_year, 
+      inv_description, 
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      classification_id
+    })
+    return inv_id
   }
   next()
 }
