@@ -1,10 +1,10 @@
 <section>
-        <% if (title) { %>
-            <h1><%= title %></h1>
+  <% if (title) { %>
+    <h1><%= title %></h1>
 
-            <% } else {
-              res.redirect('/')
-            } %>
+  <% } else {
+      res.redirect('/')
+    } %>
         
         <%- messages() %>
         <% if (errors) { %>
@@ -14,7 +14,16 @@
         <%  }) %>
          </ul>
         <% } %>
-        <h2>You're logged in</h2>
+
+
+      <h2>Welcome <%= locals.accountData.account_firstname %></h2>
+      <p>You're logged in</p>
+      <p><a href="/account/update-account"> Edit account Information</a></p>
+
+  <% if (locals.accountData.account_type !=='Client') { %>
+    <h3><%= title2 %></h3>
+    <p><a href="/inv">Inventory Management</a></p>
+  <% } %>
 </section>
 <style> 
     h1,h2{text-align: center;} 
