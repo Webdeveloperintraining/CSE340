@@ -11,9 +11,10 @@ router.get("/type/:classificationId", utilities.handleErrors(invController.build
 router.get("/detail/:inv_id",utilities.handleErrors(invController.buildByDetails));
 
 /* Management Area */
-router.get("/inv",utilities.handleErrors(invController.buildInventoryManagement));
+router.get("/inv",utilities.checkLogin,utilities.handleErrors(invController.buildInventoryManagement));
 
-router.get("/add-inventory",utilities.handleErrors(invController.buildInventory));
+router.get("/add-inventory",
+utilities.checkLogin,utilities.handleErrors(invController.buildInventory));
 
 router.post('/add-inventory',
 invValidate.vehicleRules(),
@@ -21,7 +22,8 @@ utilities.checkLogin,
 invValidate.checkVehicleData,
 utilities.handleErrors(invController.addNewVehicle))
 
-router.get("/add-classification",utilities.handleErrors(invController.buildClassification));
+router.get("/add-classification",
+utilities.checkLogin, utilities.handleErrors(invController.buildClassification));
 
 router.post('/add-classification',
 invValidate.classificationRules(),
