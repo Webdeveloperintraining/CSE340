@@ -11,43 +11,47 @@ router.get("/type/:classificationId", utilities.handleErrors(invController.build
 router.get("/detail/:inv_id",utilities.handleErrors(invController.buildByDetails));
 
 /* Management Area */
-router.get("/inv",utilities.checkLogin,utilities.handleErrors(invController.buildInventoryManagement));
+router.get("/inv", utilities.accountTypeCheck, utilities.checkLogin, utilities.handleErrors(invController.buildInventoryManagement));
 
 router.get("/add-inventory",
-utilities.checkLogin,utilities.handleErrors(invController.buildInventory));
+utilities.checkLogin,utilities.accountTypeCheck,utilities.handleErrors(invController.buildInventory));
 
 router.post('/add-inventory',
 invValidate.vehicleRules(),
 utilities.checkLogin,
+utilities.accountTypeCheck,
 invValidate.checkVehicleData,
 utilities.handleErrors(invController.addNewVehicle))
 
 router.get("/add-classification",
-utilities.checkLogin, utilities.handleErrors(invController.buildClassification));
+utilities.checkLogin,utilities.accountTypeCheck, utilities.handleErrors(invController.buildClassification));
 
 router.post('/add-classification',
 invValidate.classificationRules(),
 utilities.checkLogin,
+utilities.accountTypeCheck,
 invValidate.checkClassificationData,
 utilities.handleErrors(invController.addNewClassification))
 
 
-router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+router.get("/getInventory/:classification_id", utilities.checkLogin, utilities.accountTypeCheck, utilities.handleErrors(invController.getInventoryJSON))
 
 /* Route to Edit Vehicles */
-router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventory));
+router.get("/edit/:inv_id", utilities.accountTypeCheck, utilities.accountTypeCheck, utilities.handleErrors(invController.editInventory));
 
 router.post("/update/", 
 invValidate.vehicleRules(),
 utilities.checkLogin,
+utilities.accountTypeCheck,
 invValidate.checkUpdateData,
 utilities.handleErrors(invController.updateInventory))
 
 /* Route to Delete Vehicles */
-router.get("/delete/:inv_id", utilities.handleErrors(invController.buildDeleteInventory));
+router.get("/delete/:inv_id", utilities.checkLogin, utilities.accountTypeCheck, utilities.handleErrors(invController.buildDeleteInventory));
 
 router.post("/delete/", 
 utilities.checkLogin, 
+utilities.accountTypeCheck,
 utilities.handleErrors(invController.deleteInventory))
 
 module.exports = router;

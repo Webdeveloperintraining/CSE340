@@ -143,6 +143,16 @@ Util.checkJWTToken = (req, res, next) => {
   }
  }
 
+ Util.accountTypeCheck = (req, res, next) => {
+  const account_type =res.locals.accountData.account_type
+    if (account_type == 'Employee' || account_type == 'Admin') {
+      next()
+    } else {
+      req.flash("notice", "Sorry, you're account type does not have the rights to access here")
+      return res.redirect("/account/")
+    }
+ }
+
   /* ****************************************
  *  Log out
  * ************************************ */
@@ -150,6 +160,7 @@ Util.checkJWTToken = (req, res, next) => {
   res.clearCookie('jwt'); 
   return res.redirect('/')
  }
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
