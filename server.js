@@ -70,6 +70,10 @@ app.use("/account",utilities.handleErrors(accountRoute))
 
 // Index route
 app.get("/", utilities.handleErrors(baseController.buildHome))
+//app.use("/", utilities.handleErrors(baseController.buildHome))
+
+// Log out Route
+app.get('/logout', utilities.handleErrors(utilities.logout));
 
 //Error Route
 app.get("/error", utilities.handleErrors(baseController.buildHome2))
