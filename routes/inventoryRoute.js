@@ -17,6 +17,7 @@ router.get("/add-inventory",utilities.handleErrors(invController.buildInventory)
 
 router.post('/add-inventory',
 invValidate.vehicleRules(),
+utilities.checkLogin,
 invValidate.checkVehicleData,
 utilities.handleErrors(invController.addNewVehicle))
 
@@ -24,6 +25,7 @@ router.get("/add-classification",utilities.handleErrors(invController.buildClass
 
 router.post('/add-classification',
 invValidate.classificationRules(),
+utilities.checkLogin,
 invValidate.checkClassificationData,
 utilities.handleErrors(invController.addNewClassification))
 
@@ -35,8 +37,15 @@ router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventory))
 
 router.post("/update/", 
 invValidate.vehicleRules(),
+utilities.checkLogin,
 invValidate.checkUpdateData,
 utilities.handleErrors(invController.updateInventory))
 
-//router.get("/detail",utilities.handleErrors(invController.buildByDetails));
+/* Route to Delete Vehicles */
+router.get("/delete/:inv_id", utilities.handleErrors(invController.buildDeleteInventory));
+
+router.post("/delete/", 
+utilities.checkLogin, 
+utilities.handleErrors(invController.deleteInventory))
+
 module.exports = router;
