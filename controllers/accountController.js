@@ -112,4 +112,14 @@ async function accountLogin(req, res) {
   })
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildLoginManagement}
+/* Update Account menu  */
+async function buildUpdateAccount (req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("account/update-account", {
+    title: "Edit Account",
+    nav,
+    errors:null
+  })
+}
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildLoginManagement, buildUpdateAccount}
