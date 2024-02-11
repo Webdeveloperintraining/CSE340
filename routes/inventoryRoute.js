@@ -37,7 +37,7 @@ utilities.handleErrors(invController.addNewClassification))
 router.get("/getInventory/:classification_id", utilities.checkLogin, utilities.accountTypeCheck, utilities.handleErrors(invController.getInventoryJSON))
 
 /* Route to Edit Vehicles */
-router.get("/edit/:inv_id", utilities.accountTypeCheck, utilities.accountTypeCheck, utilities.handleErrors(invController.editInventory));
+router.get("/edit/:inv_id", utilities.accountTypeCheck, utilities.handleErrors(invController.editInventory));
 
 router.post("/update/", 
 invValidate.vehicleRules(),

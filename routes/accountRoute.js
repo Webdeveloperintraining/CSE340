@@ -28,4 +28,7 @@ utilities.handleErrors(accountController.registerAccount))
 
   router.get('/', utilities.checkLogin, utilities.handleErrors(accountController.buildLoginManagement))
 
+/* Routes to update management menu*/
+router.get("/update-account", utilities.checkLogin, utilities.handleErrors(accountController.buildUpdateAccount));
+
 module.exports = router;
