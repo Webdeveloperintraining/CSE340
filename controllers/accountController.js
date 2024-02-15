@@ -113,13 +113,101 @@ async function accountLogin(req, res) {
 }
 
 /* Update Account menu  */
-async function buildUpdateAccount (req, res, next) {
+/*async function buildUpdateAccount (req, res, next) {
   let nav = await utilities.getNav()
   res.render("account/update-account", {
     title: "Edit Account",
     nav,
     errors:null
   })
+}*/
+
+/* ****************************************
+ *  Process update data account request
+ * ************************************ */
+async function editAccountData(req, res, next){
+  const account_id = parseInt(req.params.account_id);
+  let nav = await utilities.getNav();
+  const accountData = await accountModel.getAccountById(account_id);
+  res.render("./account/update-account", {
+    title: "Edit Account",
+    nav,
+    errors: null,
+    account_id: accountData.account_id,
+    account_firstname: accountData.account_firstname,
+    account_lastname: accountData.account_lastname,
+    account_email: accountData.account_email
+  });
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildLoginManagement, buildUpdateAccount}
+async function updateAccountData (req, res, next) {
+  let nav = await utilities.getNav()
+  const {
+    account_firstname,
+    account_lastname,
+    account_email,
+    account_id,
+  } = req.body
+  const updateResult = await accountModel.updateAccount(
+    account_firstname,
+    account_lastname,
+    account_email,
+    account_id,)
+
+  if (updateResult) {
+    req.flash("notice", `The account data was successfully updated.`)
+    res.redirect("/account/")
+  } else {
+    req.flash("notice", "Sorry, the insert failed.")
+    res.status(501).render("account/update-account", {
+    title: "Edit Account",
+    nav,
+    errors: null,
+    account_id,
+    account_firstname,
+    account_lastname,
+    account_email
+    })
+  }
+}
+
+/* ****************************************
+ *  Process password update request
+ * ************************************ */
+async function updateAccountPassword(req, res, next){
+    let nav = await utilities.getNav()
+    const {
+      account_password,
+      account_id
+    } = req.body
+    let hashedPassword
+try {
+  // regular password and cost (salt is generated automatically)
+  hashedPassword = await bcrypt.hashSync(account_password, 10)
+} catch (error) {
+  req.flash("notice", 'Sorry, there was an error processing the registration.')
+  res.status(500).render("account/update-account", {
+    title: "Edit Account",
+    nav,
+    errors: null,
+  })
+}
+    const updateResult = await accountModel.updatePassword(
+      hashedPassword,
+      account_id,)
+  
+    if (updateResult) {
+      req.flash("notice", `The account password was successfully updated.`)
+      res.redirect("/account/")
+    } else {
+      req.flash("notice", "Sorry, the insert failed.")
+      res.status(501).render("account/update-account", {
+      title: "Edit Account",
+      nav,
+      errors: null,
+      account_id,
+      account_password
+      })
+    }
+  }
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildLoginManagement, /*buildUpdateAccount,*/ editAccountData, updateAccountData,updateAccountPassword}

@@ -14,7 +14,7 @@
      </ul>
     <% } %>
     <h2> Update Account</h2>
-      <form class="login" id="updateForm" action="/account/update-info" method="post">
+      <form class="management-forms" id="updateForm" action="/account/update-info" method="post">
         <label for="account_firstname" >First Name :</label>
         <input id="account_firstname" type="text" name="account_firstname" placeholder="Stuart" required value="<%= locals.account_firstname %>">
         <label for="account_lastname">Last Name :</label><input id="account_lastname" name="account_lastname" type="text" placeholder="Little" required value="<%= locals.account_lastname %>">
