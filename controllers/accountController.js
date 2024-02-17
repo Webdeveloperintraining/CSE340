@@ -220,7 +220,7 @@ async function buildAccountManagement(req, res, next) {
   const account_id = req.body
   const accountsData = await accountModel.getAccountById(account_id)
   const accountsSelect= await utilities.buildAccountsList(accountsData)
-  res.render("account/account-management", {
+  res.render("account/accounts-management", {
     title: "Manage Accounts",
     nav,
     accountsSelect,
@@ -229,8 +229,29 @@ async function buildAccountManagement(req, res, next) {
   })
 }
 
+async function updateAccountType (req, res, next){
+  const {account_id, account_firstname, account_lastname, account_email, account_type} = req.body
+  const updateResult = await accountModel.updateAccountType(account_type,account_id)
+    let nav = await utilities.getNav()
+  if (updateResult) {
+    req.flash("notice", `The account type was successfully updated.`)
+    res.redirect("/account/")
+  } else {
+    req.flash("notice", "Sorry, the insert failed.")
+    res.status(501).render("account/accounts-management", {
+    title: "Manage Accounts",
+    nav,
+    errors: null,
+    account_id,
+    account_firstname,
+    account_lastname,
+    account_email
+    })
+  }
+}
+
 
 
 
 module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildLoginManagement, buildAccountManagement, 
-editAccountData, updateAccountData,updateAccountPassword,getAccountsJSON}
+editAccountData, updateAccountData,updateAccountPassword,getAccountsJSON,updateAccountType}

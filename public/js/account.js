@@ -4,7 +4,7 @@
  let accountList = document.querySelector("#accountList")
  accountList.addEventListener("change", function () { 
   let account_id = accountList.value  
-  let classIdURL = "/account/account-management/"+account_id 
+  let classIdURL = "/account/accounts-management/"+account_id 
   fetch(classIdURL) 
   .then(function (response) { 
    if (response.ok) { 
@@ -26,7 +26,7 @@
  function buildAccountTypeForm(data) { 
     let accountDisplay = document.getElementById("accountTypeForm"); 
     let accountData = '<h2>Change Account Type</h2>';
-    accountData += '<form action="" class="management-forms" method="post">';
+    accountData += '<form action="/accounts-management" class="management-forms" method="post">';
     accountData += `<label>Account Firstname:</label><input readonly value="${data.account_firstname}"> </input>`;
     accountData += `<label>Account Lastname:</label><input readonly value="${data.account_lastname}"></input>`;
     accountData += '<label>Account Type:</label>';
@@ -52,7 +52,7 @@ function buildDeleteAccountForm(data) {
     let accountDisplay = document.getElementById("accountDeleteForm"); 
     let accountData = '<br><h2>Delete Account</h2>';
     accountData += '<h3><strong>NOTE: DELETING AN ACCOUNT IS IRREVERSIBLE</strong></h3>',
-    accountData += '<form action="" class="management-forms" method="post" onSubmit="if(!confirm("Are you sure you want to delete this account?")){return false;}">'
+    accountData += '<form action="/account-delete" class="management-forms" method="post" onSubmit="if(!confirm("Are you sure you want to delete this account?")){return false;}">'
     accountData += `<label>Account Firstname:</label><input readonly value="${data.account_firstname}"> </input>`,
     accountData += `<label>Account Lastname: </label><input readonly value="${data.account_lastname}"></input>`,
     accountData += `<label>Account Email:</label><input readonly value="${data.account_email}"></input>`,
