@@ -4,6 +4,7 @@ const router = new express.Router()
 const regValidate = require('../utilities/account-validation')
 const accountController = require("../controllers/accountController")
 const utilities = require("../utilities/");
+const { check } = require("express-validator");
 
 // Route to build account
 router.get("/login", utilities.handleErrors(accountController.buildLogin));
@@ -14,20 +15,12 @@ regValidate.registationRules(),
 regValidate.checkRegData,
 utilities.handleErrors(accountController.registerAccount))
 
-// Process the login attempt
-/*router.post(
-    "/login",
-    (req, res) => {
-      res.status(200).send('login process')
-    }
-  )*/
+router.post('/login',
+regValidate.loginRules(),
+regValidate.checkLogData,
+utilities.handleErrors(accountController.accountLogin))
 
-  router.post('/login',
-  regValidate.loginRules(),
-  regValidate.checkLogData,
-  utilities.handleErrors(accountController.accountLogin))
-
-  router.get('/', utilities.checkLogin, utilities.handleErrors(accountController.buildLoginManagement))
+router.get('/', utilities.checkLogin, utilities.handleErrors(accountController.buildLoginManagement))
 
 // Update Account Settings
 router.get("/update/:account_id", utilities.checkLogin, utilities.handleErrors(accountController.editAccountData));
@@ -44,5 +37,12 @@ regValidate.updatePasswordRules(),
 regValidate.checkPasswordUpdate,
 utilities.checkLogin,
 utilities.handleErrors(accountController.updateAccountPassword))
+
+
+/* Update Account Type /Delete Accounts Routes */
+router.get("/account-management/:account_id", utilities.checkLogin, utilities.accountTypeCheck, utilities.handleErrors(accountController.getAccountsJSON))
+
+router.get("/account-management", utilities.checkLogin, utilities.handleErrors(accountController.buildAccountManagement))
+
 
 module.exports = router;

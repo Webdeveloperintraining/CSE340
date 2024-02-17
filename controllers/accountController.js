@@ -112,16 +112,6 @@ async function accountLogin(req, res) {
   })
 }
 
-/* Update Account menu  */
-/*async function buildUpdateAccount (req, res, next) {
-  let nav = await utilities.getNav()
-  res.render("account/update-account", {
-    title: "Edit Account",
-    nav,
-    errors:null
-  })
-}*/
-
 /* ****************************************
  *  Process update data account request
  * ************************************ */
@@ -210,4 +200,37 @@ try {
       })
     }
   }
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildLoginManagement, /*buildUpdateAccount,*/ editAccountData, updateAccountData,updateAccountPassword}
+
+/* Project Controller */
+
+async function getAccountsJSON (req, res, next) {
+  const account_id = parseInt(req.params.account_id)
+  const accountData = await accountModel.getAccountById(account_id)
+  if (accountData.account_id) {
+  //if (accountData.length > 0) {
+    return res.json(accountData)
+  } else {
+  //  next(new Error("No data returned"))
+  }
+}
+
+/* Update Account menu  */
+async function buildAccountManagement(req, res, next) {
+  let nav = await utilities.getNav()
+  const account_id = req.body
+  const accountsData = await accountModel.getAccountById(account_id)
+  const accountsSelect= await utilities.buildAccountsList(accountsData)
+  res.render("account/account-management", {
+    title: "Manage Accounts",
+    nav,
+    accountsSelect,
+    errors:null
+    //account_id
+  })
+}
+
+
+
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildLoginManagement, buildAccountManagement, 
+editAccountData, updateAccountData,updateAccountPassword,getAccountsJSON}

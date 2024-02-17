@@ -46,7 +46,7 @@ async function checkExistingEmail(account_email){
 async function getAccountById (account_id) {
   try {
     const result = await pool.query(
-      'SELECT account_id, account_firstname, account_lastname, account_email, account_type, account_password FROM account WHERE account_id = $1',
+      'SELECT account_id, account_firstname, account_lastname, account_email, account_type FROM account WHERE account_id = $1',
       [account_id])
     return result.rows[0]
   } catch (error) {
@@ -54,6 +54,13 @@ async function getAccountById (account_id) {
   }
 }
 
+async function getAccounts() {
+  return await pool.query('SELECT account_id, account_firstname, account_lastname, account_email, account_password,account_type FROM account ORDER BY account_firstname');
+}
+
+async function getAccountTypes() {
+  return await pool.query('SELECT account_type FROM account GROUP BY account_type ORDER BY account_type');
+}
 
 /* ***************************
  *  Update Inventory Data
@@ -80,7 +87,7 @@ async function updateAccount(
 }
 
 /* ***************************
- *  Update Inventory Data
+ *  Update Account Personal Data
  * ************************** */
 async function updatePassword(
   account_password,
@@ -99,4 +106,22 @@ async function updatePassword(
   }
 }
 
-module.exports = {registerAccount,checkExistingEmail, getAccountByEmail,getAccountById,  updateAccount,updatePassword};
+/* ***************************
+ *  Update Account Type and Delete Accoutns
+ * ************************** */
+
+
+
+
+async function deleteAccount(account_id) {
+  try {
+    const sql = 'DELETE FROM public.account WHERE account_id = $1'
+    const data = await pool.query(sql, [account_id])
+  return data
+  } catch (error) {
+    new Error("Delete Account Error")
+  }
+}
+
+
+module.exports = {registerAccount,checkExistingEmail, getAccountByEmail,getAccountById,  updateAccount,updatePassword,getAccounts,deleteAccount,getAccountTypes};

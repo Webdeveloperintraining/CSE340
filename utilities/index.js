@@ -1,4 +1,5 @@
 const invModel = require("../models/inventory-model")
+const accModel = require("../models/account-model")
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
 const Util = {}
@@ -160,6 +161,33 @@ Util.checkJWTToken = (req, res, next) => {
   res.clearCookie('jwt'); 
   return res.redirect('/')
  }
+
+  /* ****************************************
+ *  Update account type utilities
+ * ************************************ */
+  Util.buildAccountsList = async function(account_id){
+    let data = await accModel.getAccounts()
+    let option = '<select name="account_id" id="accountList" required>';
+    option += '<option value="">Select an Account </option>';
+    data.rows.forEach((row) => {
+      const isSelected = Number(row.account_id) === Number(account_id) ? 'selected' : '';
+    option += `<option value="${row.account_id}" ${isSelected}>${row.account_firstname}  ${row.account_lastname}</option>`;
+    });
+      option += '</select>';
+      return option
+    }
+
+    Util.buildAccountTypesList = async function(account_type){
+      let data = await accModel.getAccountTypes()
+      let option = '<select name="account_type" id="account_typeList" required>';
+      option += '<option value="">Select an Account Type</option>';
+      data.rows.forEach((row) => {
+        const isSelected = Number(row.account_type) === Number(account_type) ? 'selected' : '';
+      option += `<option value="${row.account_type}" ${isSelected}>${row.account_type}</option>`;
+      });
+        option += '</select>';
+        return option
+      }
 
 /* ****************************************
  * Middleware For Handling Errors
