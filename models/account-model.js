@@ -109,8 +109,19 @@ async function updatePassword(
 /* ***************************
  *  Update Account Type and Delete Accoutns
  * ************************** */
-
-
+async function updateAccountType (account_type,account_id){
+  try {
+    const sql =
+      "UPDATE public.account SET account_type = $1 WHERE account_id = $2 RETURNING *"
+    const data = await pool.query(sql, [
+      account_type,
+      account_id
+    ])
+    return data.rows[0]
+  } catch (error) {
+    console.error("model error: " + error)
+  }
+}
 
 
 async function deleteAccount(account_id) {
@@ -124,4 +135,5 @@ async function deleteAccount(account_id) {
 }
 
 
-module.exports = {registerAccount,checkExistingEmail, getAccountByEmail,getAccountById,  updateAccount,updatePassword,getAccounts,deleteAccount,getAccountTypes};
+module.exports = {registerAccount,checkExistingEmail, getAccountByEmail,getAccountById, 
+  updateAccountType ,updateAccount,updatePassword,getAccounts,deleteAccount,getAccountTypes};
