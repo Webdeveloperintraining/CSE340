@@ -1,4 +1,5 @@
 const utilities = require(".")
+const bcrypt = require('bcryptjs');
 const { body, validationResult } = require("express-validator")
 const validate = {}
 const accountModel = require("../models/account-model")
@@ -7,7 +8,7 @@ const accountModel = require("../models/account-model")
 /*  **********************************
  *  Registration Data Validation Rules
  * ********************************* */
-validate.registationRules = () => {
+validate.registrationRules = () => {
     return [
       // firstname is required and must be string
       body("account_firstname")
@@ -72,7 +73,7 @@ validate.checkRegData = async (req, res, next) => {
   
   validate.loginRules = () => {
     return [
-  // valid email is required and should be already exist in the database
+  // valid email is required and should already exist in the database
   body("account_email")
   .trim()
   .isEmail()
@@ -85,19 +86,28 @@ validate.checkRegData = async (req, res, next) => {
     }
   }),
   
-      // password is required and must be strong password
-      body("account_password")
-        .trim()
-        .isStrongPassword({
-          minLength: 12,
-          minLowercase: 1,
-          minUppercase: 1,
-          minNumbers: 1,
-          minSymbols: 1,
-        })
-        .withMessage("Password does not meet requirements."),
-    ]
-  }
+  // password is required and must be strong password
+  body('account_password')
+  .trim()
+  .isStrongPassword({
+      minLength: 12,
+      minLowercase: 1,
+      minUppercase: 1,
+      minNumbers: 1,
+      minSymbols: 1,
+  })
+  .withMessage('Password does not meet requirements.')
+  //CHATGPT code
+  .custom(async (account_password, { req }) => {
+      const retrievedPasswordHash = await accountModel.checkPassword(req.body.account_email);
+      const isMatch = await bcrypt.compare(account_password, retrievedPasswordHash);
+      if (!isMatch) {
+          throw new Error('Sorry, wrong password');
+      }
+  }),
+];
+};
+//End
 
   validate.checkLogData = async (req, res, next) => {
     const { account_email } = req.body

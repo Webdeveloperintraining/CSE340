@@ -27,6 +27,7 @@ async function getAccountByEmail (account_email) {
 }
 
 
+
   /* **********************
  *   Check for existing email
  * ********************* */
@@ -39,6 +40,22 @@ async function checkExistingEmail(account_email){
     return error.message
   }
 }
+
+  /* **********************
+ *   Check for Password
+ * ********************* */
+  async function checkPassword(account_email) {
+    try {
+      const result = await pool.query('SELECT account_password FROM account WHERE account_email = $1', [account_email]);
+      if (result.rowCount === 1) {
+        return result.rows[0].account_password; // Return the retrieved password
+      } else {
+        throw new Error('User not found'); // Throw error if user not found
+      }
+    } catch (error) {
+      throw new Error('Error checking password: ' + error.message); // Throw a new error message
+    }
+  }
 
 /* *****************************
 * Return account data using email address
@@ -146,4 +163,4 @@ async function checkExistingAccountType(account_id,account_type){
 }
 
 module.exports = {registerAccount,checkExistingEmail, getAccountByEmail,getAccountById, 
-  updateAccountType ,updateAccount,updatePassword,getAccounts,deleteAccount,getAccountTypes,checkExistingAccountType};
+  updateAccountType ,updateAccount,updatePassword,getAccounts,deleteAccount,getAccountTypes,checkExistingAccountType,checkPassword};

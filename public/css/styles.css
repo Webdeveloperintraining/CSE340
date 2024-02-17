@@ -366,6 +366,7 @@ table.vehicle-table tr:nth-child(even) {
 table.vehicle-table tr:hover {
   background-color: #f2f2f2;
 }
+/* End of table code*/
 
 /* Add Classififcation View Styling*/
 .general-form{

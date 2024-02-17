@@ -11,7 +11,7 @@ router.get("/login", utilities.handleErrors(accountController.buildLogin));
 router.get("/registration", utilities.handleErrors(accountController.buildRegister));
 
 router.post('/register',
-regValidate.registationRules(),
+regValidate.registrationRules(),
 regValidate.checkRegData,
 utilities.handleErrors(accountController.registerAccount))
 
@@ -44,7 +44,7 @@ router.get("/accounts-management", utilities.checkLogin,utilities.accountTypeChe
 
 router.get("/accounts-management/:account_id", utilities.checkLogin, utilities.accountTypeCheckAdmin, utilities.handleErrors(accountController.getAccountsJSON))
 
-// Updating account check
+// Updating account type check
 router.post('/accounts-management',
 //regValidate.updateAccountTypeRules(),
 //regValidate.checkAccountTypeData,
