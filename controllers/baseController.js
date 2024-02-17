@@ -8,8 +8,9 @@ baseController.buildHome = async function(req, res){
 }
 
 baseController.buildHome2 = async function(req, res){
-  //const nav = await utilities.getNav()
-  res.render("index", {title: "Home", nv})
+  const errors =(req, res) => {res.status(500).send('Error Message')}
+  res.render("index", {title: "Home", nav, errors})
+  // Process the login attempt
 }
 
 module.exports = baseController
