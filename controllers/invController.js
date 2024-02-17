@@ -40,7 +40,7 @@ invCont.buildInventoryManagement = async function(req, res){
   let nav = await utilities.getNav()
   const classificationSelect = await utilities.buildClassificationList(data)
   res.render("./inventory/management", {
-    title: "Management",
+    title: "Inventory Management",
     nav,
     errors: null,
     classificationSelect
@@ -87,7 +87,7 @@ invCont.addNewClassification = async function(req,res){
       `Congratulations, you added ${classification_name}, to the navigation bar.`
     )
     res.status(201).render("inventory/management", {
-      title: "Management",
+      title: "Inventory Management",
       nav,
       errors: null
     })
@@ -115,7 +115,7 @@ invCont.addNewVehicle= async function(req,res){
       'Congratulations, you added a new vehicle.'
     )
     res.status(201).render("inventory/management", {
-      title: "Management",
+      title: "Inventory Management",
       nav,
       errors: null
     })
