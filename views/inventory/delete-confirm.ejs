@@ -14,7 +14,7 @@
     </ul>
     <% } %>
 
-    <form class="management-forms" id="updateForm" action="/inv/delete" method="post" >
+    <form class="general-form" id="updateForm" action="/inv/delete" method="post" >
       <span class="form-notes"><strong>Note:</strong>  The delete is permanent.</span> 
         <label for="inv_make">Make :</label><input readonly name="inv_make" id="inv_make" type="text" placeholder="Min of 3 characters" pattern="^[a-zA-Z0-9\- ]+$" required minlength="3" value="<%= locals.inv_make %>">
         <label for="inv_model">Model :</label><input readonly name="inv_model" id="inv_model" type="text" placeholder="Min of 3 characters" pattern="^[a-zA-Z0-9\- ]+$" required minlength="3" value="<%= locals.inv_model %>">

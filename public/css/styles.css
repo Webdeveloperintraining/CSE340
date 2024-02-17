@@ -7,9 +7,9 @@
 }
 body{background-color:white;}
 
-.siteName a,h1 ,h2, h3, h4 {font-family: 'Orbitron', sans-serif;}
+.siteName a,h1 ,h2, h3, h4,label,th {font-family: 'Orbitron', sans-serif;}
 
-p,ul,li,a{font-family: 'Roboto', sans-serif;}
+p,ul,li,a,span,input,textarea,select{font-family: 'Roboto', sans-serif;}
 
 /* Main tag general styling*/
 section{margin: 1rem 0 1rem 0;}
@@ -29,7 +29,7 @@ header{
   color:#001514;
 }
 
-div#tools a{color:#001514; text-decoration:none; font-size: 1.1rem; font-family: 'Roboto', sans-serif;}
+div#tools a{color:#001514; text-decoration:none; font-size: 1.1rem;}
 
 div#tools a:hover{text-decoration: underline;}
 
@@ -45,7 +45,6 @@ footer a:hover{text-decoration:underline;}
 
 nav ul{ 
   display:flex; 
-  flex-direction:row;  
   justify-content:space-evenly;
   list-style-type: none;
   padding: 0;
@@ -208,39 +207,21 @@ hr{display: none;}
 
 ul.notice{
   font-size: 1rem;
-  font-family: 'Roboto', sans-serif;
   margin:1rem;
   color:red;
   list-style-type: none;
   padding:0;
 }
 
-form.login{
-  display: flex;
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 700;
-  padding:1rem;
-  margin: auto;
-  font-size: 1.2rem;
-  width:80%;
-  gap: .5rem;
-  flex-direction: column;
-  background-color:#568EA3;
-  border: #001514 4px solid;
-  border-radius: 8px;
-}
-
 form.login input {
   padding: .5rem;
   border: #001514 1px solid;
   border-radius: 10px;
-  font-family: 'Roboto', sans-serif;
 }
 
 form.login .form-notes,.form-notes{
   font-weight: 100;
   text-align: left;
-  font-family: 'Roboto', sans-serif;
   font-size: 1rem;
 }
 
@@ -273,7 +254,6 @@ form.login span a:hover{color: white;}
 /* Register Form Styling */
 form.register{
   display: flex;
-  font-family: 'Orbitron', sans-serif;
   flex-direction: column;
   border: #001514 4px solid;
   border-radius: 8px;
@@ -289,7 +269,6 @@ form.register input {
   padding: .5rem;
   border: #001514 1px solid;
   border-radius: 10px;
-  font-family: 'Roboto', sans-serif;
 }
 
 .register-btn{
@@ -351,7 +330,6 @@ table.vehicle-table {
   width: 100%;
   border-collapse: collapse;
   border: 1px solid #ddd;
-  font-family: 'Roboto', sans-serif;
 }
 
 /* Table Header */
@@ -361,7 +339,6 @@ table.vehicle-table th {
   border-top: 1px solid #ddd; 
   border-bottom: 1px solid #ddd;
   padding: 8px;
-  font-family: 'Orbitron', sans-serif;
 }
 
 /* Table Rows */
@@ -391,9 +368,8 @@ table.vehicle-table tr:hover {
 }
 
 /* Add Classififcation View Styling*/
-.management-forms{
+.general-form{
   display: flex;
-  font-family: 'Orbitron', sans-serif;
   flex-direction: column;
   background-color: #568EA3;
   border: #001514 4px solid;
@@ -406,11 +382,10 @@ table.vehicle-table tr:hover {
   gap: 1rem;
 }
 
-.management-forms input,textarea,select {
+.general-form input,textarea,select {
   padding: .5rem;
   border: #001514 1px solid;
   border-radius: 10px;
-  font-family: 'Roboto', sans-serif;
   resize: none;
 }
 
