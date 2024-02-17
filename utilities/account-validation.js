@@ -196,5 +196,40 @@ validate.checkPasswordUpdate= async (req, res, next) => {
   }
   next()
 }
+// ACCOUNT TYPE VALIDATION
+/*validate.updateAccountTypeRules = () => {
+  return [
+    body("account_type")
+      .trim()
+      .custom(async (account_type) => {
+        const account_typeExists = await accountModel.checkExistingAccountType(account_id,account_type)
+        if (account_typeExists){
+          throw new Error(`The  user already belongs to that account type. Please try selecting a different account_type`)
+        }
+      })
+    ]}*/
+
+    validate.checkAccountTypeData= async (req, res, next) => {
+      const { account_id,account_type } = req.body
+      const account_typeExists = await accountModel.checkExistingAccountType(account_id,account_type)
+      if (account_typeExists){
+        throw new Error(`The  user already belongs to that account type. Please try selecting a different account_type`)
+      }
+      let errors = []
+      errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        let nav = await utilities.getNav()
+        const accountsData = await accountModel.getAccountById(account_id)
+        const accountsSelect= await utilities.buildAccountsList(accountsData)
+        res.render("account/accounts-management", {
+          errors,
+          title: "Manage Accounts",
+          nav,
+          accountsSelect
+        })
+        return
+      }
+      next()
+    }
 
 module.exports = validate

@@ -231,13 +231,15 @@ async function buildAccountManagement(req, res, next) {
 
 async function updateAccountType (req, res, next){
   const {account_id, account_firstname, account_lastname, account_email, account_type} = req.body
+  const accountsData = await accountModel.getAccountById(account_id)
+  const accountsSelect= await utilities.buildAccountsList(accountsData)
+  let nav = await utilities.getNav()
   const updateResult = await accountModel.updateAccountType(account_type,account_id)
-    let nav = await utilities.getNav()
   if (updateResult) {
     req.flash("notice", `The account type was successfully updated.`)
     res.redirect("/account/")
   } else {
-    req.flash("notice", "Sorry, the insert failed.")
+    req.flash("notice", "Sorry, the update failed.")
     res.status(501).render("account/accounts-management", {
     title: "Manage Accounts",
     nav,
@@ -245,13 +247,38 @@ async function updateAccountType (req, res, next){
     account_id,
     account_firstname,
     account_lastname,
-    account_email
+    account_email,
+    accountsSelect
+    })
+  }
+}
+
+async function deleteAccount (req, res, next) {
+  const { account_id, account_firstname, account_lastname, account_email, account_type } = req.body
+  let nav = await utilities.getNav()
+  const accountsData = await accountModel.getAccountById(account_id)
+  const accountsSelect= await utilities.buildAccountsList(accountsData)
+  const deleteResult = await accountModel.deleteAccount(account_id)
+
+  if (deleteResult) {
+    req.flash("notice", `The account was successfully deleted.`)
+    res.redirect("/account/")
+  } else {
+    req.flash("notice", "Sorry, deletion has failed.")
+    res.status(501).render("account/accounts-management", {
+    title: "Manage Account",
+    nav,
+    accountsSelect,
+    errors: null,
+    account_id, 
+    account_firstname, 
+    account_lastname, 
+    account_email, 
+    account_type
     })
   }
 }
 
 
-
-
 module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildLoginManagement, buildAccountManagement, 
-editAccountData, updateAccountData,updateAccountPassword,getAccountsJSON,updateAccountType}
+editAccountData, updateAccountData,updateAccountPassword,getAccountsJSON,updateAccountType,deleteAccount}

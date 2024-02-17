@@ -40,9 +40,25 @@ utilities.handleErrors(accountController.updateAccountPassword))
 
 
 /* Update Account Type /Delete Accounts Routes */
-router.get("/account-management/:account_id", utilities.checkLogin, utilities.accountTypeCheck, utilities.handleErrors(accountController.getAccountsJSON))
+router.get("/accounts-management", utilities.checkLogin,utilities.accountTypeCheckAdmin, utilities.handleErrors(accountController.buildAccountManagement))
 
-router.get("/account-management", utilities.checkLogin, utilities.handleErrors(accountController.buildAccountManagement))
+router.get("/accounts-management/:account_id", utilities.checkLogin, utilities.accountTypeCheckAdmin, utilities.handleErrors(accountController.getAccountsJSON))
+
+// Updating account check
+router.post('/accounts-management',
+//regValidate.updateAccountTypeRules(),
+//regValidate.checkAccountTypeData,
+utilities.checkLogin, 
+utilities.accountTypeCheckAdmin,
+utilities.handleErrors(accountController.updateAccountType))
+
+//DELETE accounts 
+router.post("/account-delete", 
+utilities.checkLogin, 
+utilities.accountTypeCheckAdmin,
+utilities.handleErrors(accountController.deleteAccount))
+
+
 
 
 module.exports = router;
